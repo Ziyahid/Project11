@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'poppins' , sans-serif;
+}
+
+body{
+    background: #333;
+}
+
+.bar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    
+
+}
+
+.bar i{
+    background-color: white;
+    color: #f53192;
+    border-radius: 50%;
+    padding: 10px 12px;
+    margin: 25px;
+    box-shadow: 0 5px 10px  rgba(255, 26, 26, 0.22);
+}
+
+.music-box{
+    background-color: #ffe0e5;
+    width: 100%;
+    max-width: 400px;
+    height: 600px;
+    margin: 10% auto;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.music-box img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    border: 8px solid white;
+}
+
+.music-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.music-content p{
+    font-size: 24px;
+    color: #333;
+}
+
+.music-content span{
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+}
+
+.play{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.play i{
+    background-color: white;
+    width: 60px;
+    height: 60px;
+    margin: 20px;
+    display: inline-flex;
+    color: #f53192; ;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px  rgba(255, 26, 26, 0.22);
+    cursor: pointer;
+
+    
+}
+
+#progress{
+    -webkit-appearance: none;
+    height: 6px;
+    width: 100%;
+    max-width: 300px;
+    background: #f53192;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 30px;
+
+}
+
+#progress::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    background: #f53192;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    box-shadow: 0 5px 10px  rgba(255, 26, 26, 0.22)
+}
+
+.play i:nth-child(2){
+    transform: scale(1.5);
+    background: #f53192;
+    color: #fff;
+}

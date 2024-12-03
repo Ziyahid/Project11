@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/76b652526b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="music-box">
+        <div class="bar">
+            <i class="fa-solid fa-angle-left"></i>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="music-content">
+            <img id="img" src="pic.jpg" alt="">
+            <p id="songName">Mudhal Nee Mudivum Nee</p>
+        <span id="songDir">Dabruka Siva</span>
+        </div>
+        <audio  id="song">
+            <source id="songS" src="Mudhal Nee Mudivum Nee(KoshalWorld.Com).mp3" type="audio/mpeg">
+        </audio>
+        <input type="range" value="0" id="progress">
+
+        <div class="play">
+            <i onclick="changeSong(event)" class="fa-solid fa-backward"></i>
+            <i onclick="playPause()" class="fa-solid fa-play" id="ctrlIcon"></i>
+            <i onclick="changeSong(event)" class="fa-solid fa-forward"></i>
+        </div>
+        
+        
+    </div>
+
+    <script>
+
+        let progress = document.getElementById("progress");
+        let song = document.getElementById("song");
+        let ctrlIcon = document.getElementById("ctrlIcon")
+        let img = document.getElementById("img")
+        let songName = document.getElementById("songName")
+        let songDir = document.getElementById("songDir")
+
+
+        song.onloadedmetadata = function(){
+            console.log(`Duration: ${song.duration}`);
+            progress.max = song.duration;
+            progress.value = song.currentTime;
+        }
+
+        function playPause(){
+            if(ctrlIcon.classList.contains("fa-pause")){
+                song.pause();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add(("fa-play"))
+            }
+            else{
+                song.play();
+                ctrlIcon.classList.add("fa-pause")
+                ctrlIcon.classList.remove("fa-play")
+            }
+        }
+
+
+        setInterval(() => {
+        if (!song.paused && song.currentTime < song.duration) {
+            progress.value = song.currentTime;
+        } else if (song.currentTime >= song.duration) {
+            song.pause();
+            ctrlIcon.classList.remove("fa-pause");
+            ctrlIcon.classList.add("fa-play");
+        }
+    }, 500);
+
+
+    progress.onchange = function(){
+        song.currentTime = progress.value;
+        if(ctrlIcon.contains("fa-play"))
+        song.play();
+        ctrlIcon.classList.add("fa-pause")
+        ctrlIcon.classList.remove("fa-play")
+    }
+
+    const songs = [
+    {
+        title: "Mudhal Nee Mudivum Nee",
+        artist: "Darbuka Siva",
+        image: "pic.jpg",
+        src: "Mudhal Nee Mudivum Nee(KoshalWorld.Com).mp3"
+    },
+    {
+        title: "Aval",
+        artist: "Santhosh Narayanan",
+        image: "aval.jpg",
+        src: "Aval.m4a"
+    },
+    {
+        title: "Nee Kavithaigala",
+        artist: "Pradeep Kumar ",
+        image: "nee.jpg",
+        src: "nee.m4a"
+    }
+];
+
+let index = 0;
+
+    function changeSong(event){
+
+        if(event.target.classList.contains("fa-forward")){
+
+            index = (index+1) % songs.length;
+        }
+        else if (event.target.classList.contains("fa-backward")) {
+            index = (index - 1 + songs.length) % songs.length; 
+    }
+
+    const currentSong = songs[index];
+    img.src = currentSong.image;
+    songName.innerHTML = currentSong.title;
+    songDir.innerHTML = currentSong.artist;
+    songS.src = currentSong.src;
+    if(ctrlIcon.classList.contains("fa-play")){
+        ctrlIcon.classList.add("fa-pause")
+        ctrlIcon.classList.remove("fa-play")
+
+    }
+    
+    song.load()
+    song.play()
+        
+}
+
+
+
+
+    </script>
+
+</body>
+</html>
